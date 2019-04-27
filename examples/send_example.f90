@@ -1,5 +1,5 @@
 program test
-use mod_mpi_wrapper
+use mod_mpifw
 use iso_fortran_env
 implicit none
 

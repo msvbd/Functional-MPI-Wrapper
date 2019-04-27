@@ -1,45 +1,16 @@
-module mod_send_mpi
+submodule (mod_mpifw) mod_send_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
-	use mod_broadcast_mpi
 
     implicit none
    
-    private
-    
-    interface send_mpi
-        procedure :: send_si1, send_si2, send_si4, send_si8, &
-                     send_sr4, send_sr8, send_sr16, send_sc4, &
-                     send_sc8, send_sc16, send_sl, send_d1_i1, &
-                     send_d2_i1, send_d3_i1, send_d4_i1, send_d5_i1, &
-                     send_d6_i1, send_d7_i1, send_d1_i2, send_d2_i2, &
-                     send_d3_i2, send_d4_i2, send_d5_i2, send_d6_i2, &
-                     send_d7_i2, send_d1_i4, send_d2_i4, send_d3_i4, &
-                     send_d4_i4, send_d5_i4, send_d6_i4, send_d7_i4, &
-                     send_d1_i8, send_d2_i8, send_d3_i8, send_d4_i8, &
-                     send_d5_i8, send_d6_i8, send_d7_i8, send_d1_r4, &
-                     send_d2_r4, send_d3_r4, send_d4_r4, send_d5_r4, &
-                     send_d6_r4, send_d7_r4, send_d1_r8, send_d2_r8, &
-                     send_d3_r8, send_d4_r8, send_d5_r8, send_d6_r8, &
-                     send_d7_r8, send_d1_r16, send_d2_r16, send_d3_r16, &
-                     send_d4_r16, send_d5_r16, send_d6_r16, send_d7_r16, &
-                     send_d1_c4, send_d2_c4, send_d3_c4, send_d4_c4, &
-                     send_d5_c4, send_d6_c4, send_d7_c4, send_d1_c8, &
-                     send_d2_c8, send_d3_c8, send_d4_c8, send_d5_c8, &
-                     send_d6_c8, send_d7_c8, send_d1_c16, send_d2_c16, &
-                     send_d3_c16, send_d4_c16, send_d5_c16, send_d6_c16, &
-                     send_d7_c16, send_d1_l, send_d2_l, send_d3_l, &
-                     send_d4_l, send_d5_l, send_d6_l, send_d7_l
-    end interface
-    
-    public :: send_mpi
-              
+
+
     
 contains
 !=======================================================================
-function send_si1(send_msg, pfrom, pto) result (recv_msg)
+module function send_si1(send_msg, pfrom, pto) result (recv_msg)
     integer(int8),intent(in) :: send_msg
     integer(int8) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -58,7 +29,7 @@ function send_si1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_si2(send_msg, pfrom, pto) result (recv_msg)
+module function send_si2(send_msg, pfrom, pto) result (recv_msg)
     integer(int16),intent(in) :: send_msg
     integer(int16) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -77,7 +48,7 @@ function send_si2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_si4(send_msg, pfrom, pto) result (recv_msg)
+module function send_si4(send_msg, pfrom, pto) result (recv_msg)
     integer(int32),intent(in) :: send_msg
     integer(int32) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -96,7 +67,7 @@ function send_si4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_si8(send_msg, pfrom, pto) result (recv_msg)
+module function send_si8(send_msg, pfrom, pto) result (recv_msg)
     integer(int64),intent(in) :: send_msg
     integer(int64) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -115,7 +86,7 @@ function send_si8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sr4(send_msg, pfrom, pto) result (recv_msg)
+module function send_sr4(send_msg, pfrom, pto) result (recv_msg)
     real(real32),intent(in) :: send_msg
     real(real32) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -134,7 +105,7 @@ function send_sr4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sr8(send_msg, pfrom, pto) result (recv_msg)
+module function send_sr8(send_msg, pfrom, pto) result (recv_msg)
     real(real64),intent(in) :: send_msg
     real(real64) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -153,7 +124,7 @@ function send_sr8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sr16(send_msg, pfrom, pto) result (recv_msg)
+module function send_sr16(send_msg, pfrom, pto) result (recv_msg)
     real(real128),intent(in) :: send_msg
     real(real128) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -172,7 +143,7 @@ function send_sr16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sc4(send_msg, pfrom, pto) result (recv_msg)
+module function send_sc4(send_msg, pfrom, pto) result (recv_msg)
     complex(real32),intent(in) :: send_msg
     complex(real32) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -191,7 +162,7 @@ function send_sc4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sc8(send_msg, pfrom, pto) result (recv_msg)
+module function send_sc8(send_msg, pfrom, pto) result (recv_msg)
     complex(real64),intent(in) :: send_msg
     complex(real64) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -210,7 +181,7 @@ function send_sc8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sc16(send_msg, pfrom, pto) result (recv_msg)
+module function send_sc16(send_msg, pfrom, pto) result (recv_msg)
     complex(real128),intent(in) :: send_msg
     complex(real128) :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -229,7 +200,7 @@ function send_sc16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_sl(send_msg, pfrom, pto) result (recv_msg)
+module function send_sl(send_msg, pfrom, pto) result (recv_msg)
     logical,intent(in) :: send_msg
     logical :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -248,9 +219,9 @@ function send_sl(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( : )
-    integer(int8),allocatable :: recv_msg( : )
+module function send_d1_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:)
+    integer(int8),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -267,9 +238,9 @@ function send_d1_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( :,: )
-    integer(int8),allocatable :: recv_msg( :,: )
+module function send_d2_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:,:)
+    integer(int8),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -286,9 +257,9 @@ function send_d2_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( :,:,: )
-    integer(int8),allocatable :: recv_msg( :,:,: )
+module function send_d3_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:,:,:)
+    integer(int8),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -305,9 +276,9 @@ function send_d3_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( :,:,:,: )
-    integer(int8),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:,:,:,:)
+    integer(int8),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -324,9 +295,9 @@ function send_d4_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( :,:,:,:,: )
-    integer(int8),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:,:,:,:,:)
+    integer(int8),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -343,9 +314,9 @@ function send_d5_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( :,:,:,:,:,: )
-    integer(int8),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:,:,:,:,:,:)
+    integer(int8),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -362,9 +333,9 @@ function send_d6_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_i1(send_msg, pfrom, pto) result (recv_msg)
-    integer(int8),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    integer(int8),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_i1(send_msg, pfrom, pto) result (recv_msg)
+    integer(int8),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    integer(int8),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -381,9 +352,9 @@ function send_d7_i1(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( : )
-    integer(int16),allocatable :: recv_msg( : )
+module function send_d1_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:)
+    integer(int16),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -400,9 +371,9 @@ function send_d1_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( :,: )
-    integer(int16),allocatable :: recv_msg( :,: )
+module function send_d2_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:,:)
+    integer(int16),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -419,9 +390,9 @@ function send_d2_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( :,:,: )
-    integer(int16),allocatable :: recv_msg( :,:,: )
+module function send_d3_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:,:,:)
+    integer(int16),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -438,9 +409,9 @@ function send_d3_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( :,:,:,: )
-    integer(int16),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:,:,:,:)
+    integer(int16),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -457,9 +428,9 @@ function send_d4_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( :,:,:,:,: )
-    integer(int16),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:,:,:,:,:)
+    integer(int16),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -476,9 +447,9 @@ function send_d5_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( :,:,:,:,:,: )
-    integer(int16),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:,:,:,:,:,:)
+    integer(int16),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -495,9 +466,9 @@ function send_d6_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_i2(send_msg, pfrom, pto) result (recv_msg)
-    integer(int16),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    integer(int16),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_i2(send_msg, pfrom, pto) result (recv_msg)
+    integer(int16),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    integer(int16),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -514,9 +485,9 @@ function send_d7_i2(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( : )
-    integer(int32),allocatable :: recv_msg( : )
+module function send_d1_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:)
+    integer(int32),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -533,9 +504,9 @@ function send_d1_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( :,: )
-    integer(int32),allocatable :: recv_msg( :,: )
+module function send_d2_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:,:)
+    integer(int32),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -552,9 +523,9 @@ function send_d2_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( :,:,: )
-    integer(int32),allocatable :: recv_msg( :,:,: )
+module function send_d3_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:,:,:)
+    integer(int32),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -571,9 +542,9 @@ function send_d3_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( :,:,:,: )
-    integer(int32),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:,:,:,:)
+    integer(int32),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -590,9 +561,9 @@ function send_d4_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( :,:,:,:,: )
-    integer(int32),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:,:,:,:,:)
+    integer(int32),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -609,9 +580,9 @@ function send_d5_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( :,:,:,:,:,: )
-    integer(int32),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:,:,:,:,:,:)
+    integer(int32),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -628,9 +599,9 @@ function send_d6_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_i4(send_msg, pfrom, pto) result (recv_msg)
-    integer(int32),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    integer(int32),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_i4(send_msg, pfrom, pto) result (recv_msg)
+    integer(int32),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    integer(int32),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -647,9 +618,9 @@ function send_d7_i4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( : )
-    integer(int64),allocatable :: recv_msg( : )
+module function send_d1_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:)
+    integer(int64),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -666,9 +637,9 @@ function send_d1_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( :,: )
-    integer(int64),allocatable :: recv_msg( :,: )
+module function send_d2_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:,:)
+    integer(int64),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -685,9 +656,9 @@ function send_d2_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( :,:,: )
-    integer(int64),allocatable :: recv_msg( :,:,: )
+module function send_d3_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:,:,:)
+    integer(int64),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -704,9 +675,9 @@ function send_d3_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( :,:,:,: )
-    integer(int64),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:,:,:,:)
+    integer(int64),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -723,9 +694,9 @@ function send_d4_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( :,:,:,:,: )
-    integer(int64),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:,:,:,:,:)
+    integer(int64),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -742,9 +713,9 @@ function send_d5_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( :,:,:,:,:,: )
-    integer(int64),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:,:,:,:,:,:)
+    integer(int64),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -761,9 +732,9 @@ function send_d6_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_i8(send_msg, pfrom, pto) result (recv_msg)
-    integer(int64),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    integer(int64),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_i8(send_msg, pfrom, pto) result (recv_msg)
+    integer(int64),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    integer(int64),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -780,9 +751,9 @@ function send_d7_i8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( : )
-    real(real32),allocatable :: recv_msg( : )
+module function send_d1_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:)
+    real(real32),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -799,9 +770,9 @@ function send_d1_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( :,: )
-    real(real32),allocatable :: recv_msg( :,: )
+module function send_d2_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:,:)
+    real(real32),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -818,9 +789,9 @@ function send_d2_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( :,:,: )
-    real(real32),allocatable :: recv_msg( :,:,: )
+module function send_d3_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:,:,:)
+    real(real32),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -837,9 +808,9 @@ function send_d3_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( :,:,:,: )
-    real(real32),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:,:,:,:)
+    real(real32),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -856,9 +827,9 @@ function send_d4_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( :,:,:,:,: )
-    real(real32),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:,:,:,:,:)
+    real(real32),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -875,9 +846,9 @@ function send_d5_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( :,:,:,:,:,: )
-    real(real32),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:,:,:,:,:,:)
+    real(real32),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -894,9 +865,9 @@ function send_d6_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_r4(send_msg, pfrom, pto) result (recv_msg)
-    real(real32),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    real(real32),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_r4(send_msg, pfrom, pto) result (recv_msg)
+    real(real32),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    real(real32),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -913,9 +884,9 @@ function send_d7_r4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( : )
-    real(real64),allocatable :: recv_msg( : )
+module function send_d1_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:)
+    real(real64),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -932,9 +903,9 @@ function send_d1_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( :,: )
-    real(real64),allocatable :: recv_msg( :,: )
+module function send_d2_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:,:)
+    real(real64),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -951,9 +922,9 @@ function send_d2_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( :,:,: )
-    real(real64),allocatable :: recv_msg( :,:,: )
+module function send_d3_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:,:,:)
+    real(real64),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -970,9 +941,9 @@ function send_d3_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( :,:,:,: )
-    real(real64),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:,:,:,:)
+    real(real64),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -989,9 +960,9 @@ function send_d4_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( :,:,:,:,: )
-    real(real64),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:,:,:,:,:)
+    real(real64),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1008,9 +979,9 @@ function send_d5_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( :,:,:,:,:,: )
-    real(real64),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:,:,:,:,:,:)
+    real(real64),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1027,9 +998,9 @@ function send_d6_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_r8(send_msg, pfrom, pto) result (recv_msg)
-    real(real64),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    real(real64),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_r8(send_msg, pfrom, pto) result (recv_msg)
+    real(real64),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    real(real64),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1046,9 +1017,9 @@ function send_d7_r8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( : )
-    real(real128),allocatable :: recv_msg( : )
+module function send_d1_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:)
+    real(real128),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1065,9 +1036,9 @@ function send_d1_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( :,: )
-    real(real128),allocatable :: recv_msg( :,: )
+module function send_d2_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:,:)
+    real(real128),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1084,9 +1055,9 @@ function send_d2_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( :,:,: )
-    real(real128),allocatable :: recv_msg( :,:,: )
+module function send_d3_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:,:,:)
+    real(real128),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1103,9 +1074,9 @@ function send_d3_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( :,:,:,: )
-    real(real128),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:,:,:,:)
+    real(real128),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1122,9 +1093,9 @@ function send_d4_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( :,:,:,:,: )
-    real(real128),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:,:,:,:,:)
+    real(real128),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1141,9 +1112,9 @@ function send_d5_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( :,:,:,:,:,: )
-    real(real128),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:,:,:,:,:,:)
+    real(real128),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1160,9 +1131,9 @@ function send_d6_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_r16(send_msg, pfrom, pto) result (recv_msg)
-    real(real128),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    real(real128),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_r16(send_msg, pfrom, pto) result (recv_msg)
+    real(real128),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    real(real128),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1179,9 +1150,9 @@ function send_d7_r16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( : )
-    complex(real32),allocatable :: recv_msg( : )
+module function send_d1_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:)
+    complex(real32),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1198,9 +1169,9 @@ function send_d1_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( :,: )
-    complex(real32),allocatable :: recv_msg( :,: )
+module function send_d2_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:,:)
+    complex(real32),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1217,9 +1188,9 @@ function send_d2_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( :,:,: )
-    complex(real32),allocatable :: recv_msg( :,:,: )
+module function send_d3_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:,:,:)
+    complex(real32),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1236,9 +1207,9 @@ function send_d3_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( :,:,:,: )
-    complex(real32),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:,:,:,:)
+    complex(real32),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1255,9 +1226,9 @@ function send_d4_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( :,:,:,:,: )
-    complex(real32),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:,:,:,:,:)
+    complex(real32),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1274,9 +1245,9 @@ function send_d5_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( :,:,:,:,:,: )
-    complex(real32),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:,:,:,:,:,:)
+    complex(real32),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1293,9 +1264,9 @@ function send_d6_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_c4(send_msg, pfrom, pto) result (recv_msg)
-    complex(real32),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    complex(real32),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_c4(send_msg, pfrom, pto) result (recv_msg)
+    complex(real32),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    complex(real32),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1312,9 +1283,9 @@ function send_d7_c4(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( : )
-    complex(real64),allocatable :: recv_msg( : )
+module function send_d1_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:)
+    complex(real64),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1331,9 +1302,9 @@ function send_d1_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( :,: )
-    complex(real64),allocatable :: recv_msg( :,: )
+module function send_d2_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:,:)
+    complex(real64),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1350,9 +1321,9 @@ function send_d2_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( :,:,: )
-    complex(real64),allocatable :: recv_msg( :,:,: )
+module function send_d3_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:,:,:)
+    complex(real64),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1369,9 +1340,9 @@ function send_d3_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( :,:,:,: )
-    complex(real64),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:,:,:,:)
+    complex(real64),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1388,9 +1359,9 @@ function send_d4_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( :,:,:,:,: )
-    complex(real64),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:,:,:,:,:)
+    complex(real64),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1407,9 +1378,9 @@ function send_d5_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( :,:,:,:,:,: )
-    complex(real64),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:,:,:,:,:,:)
+    complex(real64),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1426,9 +1397,9 @@ function send_d6_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_c8(send_msg, pfrom, pto) result (recv_msg)
-    complex(real64),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    complex(real64),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_c8(send_msg, pfrom, pto) result (recv_msg)
+    complex(real64),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    complex(real64),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1445,9 +1416,9 @@ function send_d7_c8(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( : )
-    complex(real128),allocatable :: recv_msg( : )
+module function send_d1_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:)
+    complex(real128),allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1464,9 +1435,9 @@ function send_d1_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( :,: )
-    complex(real128),allocatable :: recv_msg( :,: )
+module function send_d2_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:,:)
+    complex(real128),allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1483,9 +1454,9 @@ function send_d2_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( :,:,: )
-    complex(real128),allocatable :: recv_msg( :,:,: )
+module function send_d3_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:,:,:)
+    complex(real128),allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1502,9 +1473,9 @@ function send_d3_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( :,:,:,: )
-    complex(real128),allocatable :: recv_msg( :,:,:,: )
+module function send_d4_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:,:,:,:)
+    complex(real128),allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1521,9 +1492,9 @@ function send_d4_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( :,:,:,:,: )
-    complex(real128),allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:,:,:,:,:)
+    complex(real128),allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1540,9 +1511,9 @@ function send_d5_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( :,:,:,:,:,: )
-    complex(real128),allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:,:,:,:,:,:)
+    complex(real128),allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1559,9 +1530,9 @@ function send_d6_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_c16(send_msg, pfrom, pto) result (recv_msg)
-    complex(real128),intent(in) :: send_msg( :,:,:,:,:,:,: )
-    complex(real128),allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_c16(send_msg, pfrom, pto) result (recv_msg)
+    complex(real128),intent(in) :: send_msg(:,:,:,:,:,:,:)
+    complex(real128),allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1578,9 +1549,9 @@ function send_d7_c16(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d1_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( : )
-    logical,allocatable :: recv_msg( : )
+module function send_d1_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:)
+    logical,allocatable :: recv_msg(:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1597,9 +1568,9 @@ function send_d1_l(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d2_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( :,: )
-    logical,allocatable :: recv_msg( :,: )
+module function send_d2_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:,:)
+    logical,allocatable :: recv_msg(:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1616,9 +1587,9 @@ function send_d2_l(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d3_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( :,:,: )
-    logical,allocatable :: recv_msg( :,:,: )
+module function send_d3_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:,:,:)
+    logical,allocatable :: recv_msg(:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1635,9 +1606,9 @@ function send_d3_l(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d4_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( :,:,:,: )
-    logical,allocatable :: recv_msg( :,:,:,: )
+module function send_d4_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:,:,:,:)
+    logical,allocatable :: recv_msg(:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1654,9 +1625,9 @@ function send_d4_l(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d5_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( :,:,:,:,: )
-    logical,allocatable :: recv_msg( :,:,:,:,: )
+module function send_d5_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:,:,:,:,:)
+    logical,allocatable :: recv_msg(:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1673,9 +1644,9 @@ function send_d5_l(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d6_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( :,:,:,:,:,: )
-    logical,allocatable :: recv_msg( :,:,:,:,:,: )
+module function send_d6_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:,:,:,:,:,:)
+    logical,allocatable :: recv_msg(:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1692,9 +1663,9 @@ function send_d6_l(send_msg, pfrom, pto) result (recv_msg)
     
 end function
 !=======================================================================
-function send_d7_l(send_msg, pfrom, pto) result (recv_msg)
-    logical,intent(in) :: send_msg( :,:,:,:,:,:,: )
-    logical,allocatable :: recv_msg( :,:,:,:,:,:,: )
+module function send_d7_l(send_msg, pfrom, pto) result (recv_msg)
+    logical,intent(in) :: send_msg(:,:,:,:,:,:,:)
+    logical,allocatable :: recv_msg(:,:,:,:,:,:,:)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -1710,4 +1681,4 @@ function send_d7_l(send_msg, pfrom, pto) result (recv_msg)
     endif
     
 end function
-end module
+end submodule

@@ -1,25 +1,32 @@
-module mod_send_mpi
+submodule (mod_mpifw) mod_send_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
-	use mod_broadcast_mpi
 
     implicit none
    
-    private
-    
-    interface send_mpi
-        procedure :: @LIST@
-    end interface
-    
-    public :: send_mpi
-              
+	@INTERFACE_START@
+		module function send_@DIM_ID@_@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
+			@F_KIND@,intent(in) :: send_msg(@RANK@)
+			@F_KIND@,allocatable :: recv_msg(@RANK@)
+			integer(int32),intent(in) :: pfrom, pto
+		end function
+	@INTERFACE_END@
+
+	@INTERFACE_START@
+		module function send_s@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
+			@F_KIND@,intent(in) :: send_msg
+			@F_KIND@ :: recv_msg
+			integer(int32),intent(in) :: pfrom, pto
+		end function
+	@INTERFACE_END@
+
+    @INTERFACE_NAME@ send_mpi @
     
 contains
-@SCALAR_START@
+@PROCEDURE_START@
 !=======================================================================
-function send_s@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
+module function send_s@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
     @F_KIND@,intent(in) :: send_msg
     @F_KIND@ :: recv_msg
     integer(int32),intent(in) :: pfrom, pto
@@ -37,12 +44,12 @@ function send_s@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
     endif
     
 end function
-@SCALAR_END@
-@ARRAY_START@
+@PROCEDURE_END@
+@PROCEDURE_START@
 !=======================================================================
-function send_@DIM_ID@_@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
-    @F_KIND@,intent(in) :: send_msg( @RANK@ )
-    @F_KIND@,allocatable :: recv_msg( @RANK@ )
+module function send_@DIM_ID@_@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
+    @F_KIND@,intent(in) :: send_msg(@RANK@)
+    @F_KIND@,allocatable :: recv_msg(@RANK@)
     integer(int32),intent(in) :: pfrom, pto
     integer(int32) :: i
         
@@ -58,5 +65,5 @@ function send_@DIM_ID@_@F_KIND_ID@(send_msg, pfrom, pto) result (recv_msg)
     endif
     
 end function
-@ARRAY_END@
-end module
+@PROCEDURE_END@
+end submodule

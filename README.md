@@ -6,16 +6,26 @@ Functional MPI wrapper for Fortran.
 * [Why MPI wrapper?](#why-mpi-wrapper)
 * [What's included?](#whats-included)
 * [Example usage](#example-usage)
+* [Contributing](#contributing)
 * [References](#references)
 
 ## Getting started
 You need some MPI Fortran wrapper compiler. For example: `mpifort`, `mpiifort`, etc.
 
-Example usage:
+Installation:
 ```
-mpifort -O3 -c mod_mpi_wrapper.f90 -o  mod_mpi_wrapper
-mpifort my_awesome_parallel_code.f90 -o my_awesome_parallel_code mod_mpi_wrapper
-mpirun -n 4 ./my_awesome_parallel_code
+mkdir build
+cd build
+cmake ..
+make
+```
+or
+```
+sh cmake.sh
+```
+And then you can include the module in your code:
+```
+use mod_mpifw
 ```
 
 ## Why MPI wrapper?
@@ -78,7 +88,9 @@ Argumets:
 	* `"or"` - logical or
 
 ## Example usage
-Examples you can found in `/examples`
+You can found examples in `/examples`.
+All examples in `/example` you can run by python script run_examples_mpifort.py
+
 ### `send_mpi` example
 ```
 use mod_mpi_wrapper
@@ -198,6 +210,12 @@ call finish_mpi()
 1 ) 6 12 18
 0 ) 6 12 18
 ```
+
+## Contributing
+In /raw folder are "raw" fortran files where are use some tags. Tags are 
+use for automated generationg of src files by raw_to_src.py python script.
+
+Bug reports and requests please submit [here](https://github.com/msvbd/Functional-MPI-Wrapper/issues/new).
 
 ## References
 

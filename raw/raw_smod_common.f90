@@ -1,52 +1,31 @@
-module mod_common_mpi
+submodule (mod_mpifw) mod_common
 
     use mpi_f08
     use iso_fortran_env
 
     implicit none
-   
-    public
     
-    type(MPI_Comm) :: comm
-    type(MPI_Status) :: trans_stat
-    
-    integer :: ierr, idnode, tag
-    integer :: num_procs, this_proc
-    
-    public :: num_procs, this_proc
-    protected :: num_procs, this_proc
-    
-    public :: sync_mpi, stop_mpi, init_mpi, finish_mpi
+    @INTERFACE_START@
+		module subroutine sync_mpi()
+		end subroutine
+		module subroutine stop_mpi(msg)
+			character(len=*),optional :: msg
+		end subroutine
+		module function CollOp(op) result (co)
+			!import :: MPI_Op
+			character(len=*), intent(in) :: op
+			 type(MPI_Op) :: co
+		end function
+	@INTERFACE_END@
     
 contains
 !=======================================================================
-subroutine init_mpi()
-    comm = MPI_COMM_WORLD
-    tag = 1
-
-    call MPI_INIT(ierr)
-    if(ierr /= 0) call stop_mpi("init_mpi: MPI_INIT: ERROR")
-    
-    call MPI_COMM_SIZE(comm, num_procs, ierr)
-    if(ierr /= 0) call stop_mpi("init_mpi: MPI_COMM_SIZE: ERROR")
-    
-    call MPI_COMM_RANK(comm, this_proc, ierr)
-    if(ierr /= 0) call stop_mpi("init_mpi: MPI_COMM_RANK: ERROR")
-    
-end subroutine
-!=======================================================================
-subroutine finish_mpi()
-    call sync_mpi()
-    call MPI_FINALIZE(ierr)
-    if(ierr /= 0) call stop_mpi("finish_mpi: MPI_FINALIZE: ERROR")
-end subroutine
-!=======================================================================
-subroutine sync_mpi()
+module subroutine sync_mpi()
      CALL MPI_BARRIER(comm, ierr)
     if(ierr /= 0) call stop_mpi("sync_mpi: MPI_BARRIER: ERROR")
 end subroutine
 !=======================================================================
-subroutine stop_mpi(msg)
+module subroutine stop_mpi(msg)
     character(len=*),optional :: msg
     
     if(present(msg)) write(*,'(g0)') msg
@@ -56,7 +35,7 @@ subroutine stop_mpi(msg)
 end subroutine
 !=======================================================================
 ! Collective Operation
-function CollOp(op) result (co)
+module function CollOp(op) result (co)
     character(len=*), intent(in) :: op
      type(MPI_Op) :: co
      
@@ -80,4 +59,4 @@ function CollOp(op) result (co)
     end select
     
 end function
-end module
+end submodule

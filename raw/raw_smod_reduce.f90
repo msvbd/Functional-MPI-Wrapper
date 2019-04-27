@@ -1,23 +1,34 @@
-module mod_reduce_mpi
+submodule (mod_mpifw) mod_reduce_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
 
     implicit none
-   
-    private
     
-    interface reduce_mpi
-        procedure :: @LIST@
-    end interface
+    @INTERFACE_START@
+		module function reduce_s@F_KIND_ID@(what, np, op) result (res)
+			@F_KIND@,intent(in) :: what
+			integer(int32),intent(in) :: np
+			character(len=*),intent(in) :: op
+			@F_KIND@ :: res
+		end function
+	@INTERFACE_END@
     
-    public :: reduce_mpi
+    @INTERFACE_START@
+		module function reduce_@DIM_ID@_@F_KIND_ID@(what, np, op) result (res)
+			@F_KIND@,intent(in) :: what( @RANK@ )
+			integer(int32),intent(in) :: np
+			character(len=*),intent(in) :: op
+			@F_KIND@,allocatable :: res( @RANK@ )
+		end function
+	@INTERFACE_END@
+	
+    @INTERFACE_NAME@ reduce_mpi @
               
 contains
-@SCALAR_START@
+@PROCEDURE_START@
 !=======================================================================
-function reduce_s@F_KIND_ID@(what, np, op) result (res)
+module function reduce_s@F_KIND_ID@(what, np, op) result (res)
     @F_KIND@,intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -29,10 +40,10 @@ function reduce_s@F_KIND_ID@(what, np, op) result (res)
     if(ierr /= 0) call stop_mpi("rreduce_s@F_KIND_ID@: MPI_REDUCE: ERROR")
     
 end function
-@SCALAR_END@
-@ARRAY_START@
+@PROCEDURE_END@
+@PROCEDURE_START@
 !======================================================================
-function reduce_@DIM_ID@_@F_KIND_ID@(what, np, op) result (res)
+module function reduce_@DIM_ID@_@F_KIND_ID@(what, np, op) result (res)
     @F_KIND@,intent(in) :: what( @RANK@ )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -45,5 +56,5 @@ function reduce_@DIM_ID@_@F_KIND_ID@(what, np, op) result (res)
     if(ierr /= 0) call stop_mpi("reduce_@DIM_ID@_@F_KIND_ID@: MPI_REDUCE: ERROR")
     
 end function
-@ARRAY_END@
-end module
+@PROCEDURE_END@
+end submodule

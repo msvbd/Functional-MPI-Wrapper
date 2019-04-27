@@ -1,24 +1,32 @@
-module mod_allreduce_mpi
+submodule (mod_mpifw) mod_allreduce_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
 
     implicit none
    
-    private
-
-    interface allreduce_mpi
-        procedure :: @LIST@
-    end interface
+    @INTERFACE_START@
+    module function allreduce_s@F_KIND_ID@(msg, op) result (res)
+		@F_KIND@,intent(in) :: msg
+		character(len=*),intent(in) :: op
+		@F_KIND@ :: res
+    end function
+	@INTERFACE_END@
     
-    public :: allreduce_mpi
-              
+    @INTERFACE_START@
+		module function allreduce_@DIM_ID@_@F_KIND_ID@(msg, op) result (res)
+			@F_KIND@,intent(in) :: msg( @RANK@ )
+			character(len=*),intent(in) :: op
+			@F_KIND@,allocatable :: res( @RANK@ )
+		end function
+	@INTERFACE_END@
+	
+    @INTERFACE_NAME@ allreduce_mpi @             
     
 contains
-@SCALAR_START@
+@PROCEDURE_START@
 !=======================================================================
-function allreduce_s@F_KIND_ID@(msg, op) result (res)
+module function allreduce_s@F_KIND_ID@(msg, op) result (res)
     @F_KIND@,intent(in) :: msg
     character(len=*),intent(in) :: op
     @F_KIND@ :: res
@@ -27,10 +35,10 @@ function allreduce_s@F_KIND_ID@(msg, op) result (res)
     if(ierr /= 0) call stop_mpi("allreduce_s@F_KIND_ID@: MPI_ALLREDUCE: ERROR")
     
 end function
-@SCALAR_END@
-@ARRAY_START@
+@PROCEDURE_END@
+@PROCEDURE_START@
 !=======================================================================
-function allreduce_@DIM_ID@_@F_KIND_ID@(msg, op) result (res)
+module function allreduce_@DIM_ID@_@F_KIND_ID@(msg, op) result (res)
     @F_KIND@,intent(in) :: msg( @RANK@ )
     character(len=*),intent(in) :: op
     @F_KIND@,allocatable :: res( @RANK@ )
@@ -41,5 +49,5 @@ function allreduce_@DIM_ID@_@F_KIND_ID@(msg, op) result (res)
     if(ierr /= 0) call stop_mpi("allreduce_@DIM_ID@_@F_KIND_ID@: MPI_ALLREDUCE: ERROR")
     
 end function
-@ARRAY_END@
-end module
+@PROCEDURE_END@
+end submodule

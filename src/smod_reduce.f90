@@ -1,43 +1,16 @@
-module mod_reduce_mpi
+submodule (mod_mpifw) mod_reduce_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
 
     implicit none
-   
-    private
     
-    interface reduce_mpi
-        procedure :: reduce_si1, reduce_si2, reduce_si4, reduce_si8, &
-                     reduce_sr4, reduce_sr8, reduce_sr16, reduce_sc4, &
-                     reduce_sc8, reduce_sc16, reduce_sl, reduce_d1_i1, &
-                     reduce_d2_i1, reduce_d3_i1, reduce_d4_i1, reduce_d5_i1, &
-                     reduce_d6_i1, reduce_d7_i1, reduce_d1_i2, reduce_d2_i2, &
-                     reduce_d3_i2, reduce_d4_i2, reduce_d5_i2, reduce_d6_i2, &
-                     reduce_d7_i2, reduce_d1_i4, reduce_d2_i4, reduce_d3_i4, &
-                     reduce_d4_i4, reduce_d5_i4, reduce_d6_i4, reduce_d7_i4, &
-                     reduce_d1_i8, reduce_d2_i8, reduce_d3_i8, reduce_d4_i8, &
-                     reduce_d5_i8, reduce_d6_i8, reduce_d7_i8, reduce_d1_r4, &
-                     reduce_d2_r4, reduce_d3_r4, reduce_d4_r4, reduce_d5_r4, &
-                     reduce_d6_r4, reduce_d7_r4, reduce_d1_r8, reduce_d2_r8, &
-                     reduce_d3_r8, reduce_d4_r8, reduce_d5_r8, reduce_d6_r8, &
-                     reduce_d7_r8, reduce_d1_r16, reduce_d2_r16, reduce_d3_r16, &
-                     reduce_d4_r16, reduce_d5_r16, reduce_d6_r16, reduce_d7_r16, &
-                     reduce_d1_c4, reduce_d2_c4, reduce_d3_c4, reduce_d4_c4, &
-                     reduce_d5_c4, reduce_d6_c4, reduce_d7_c4, reduce_d1_c8, &
-                     reduce_d2_c8, reduce_d3_c8, reduce_d4_c8, reduce_d5_c8, &
-                     reduce_d6_c8, reduce_d7_c8, reduce_d1_c16, reduce_d2_c16, &
-                     reduce_d3_c16, reduce_d4_c16, reduce_d5_c16, reduce_d6_c16, &
-                     reduce_d7_c16, reduce_d1_l, reduce_d2_l, reduce_d3_l, &
-                     reduce_d4_l, reduce_d5_l, reduce_d6_l, reduce_d7_l
-    end interface
     
-    public :: reduce_mpi
+	
               
 contains
 !=======================================================================
-function reduce_si1(what, np, op) result (res)
+module function reduce_si1(what, np, op) result (res)
     integer(int8),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -50,7 +23,7 @@ function reduce_si1(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_si2(what, np, op) result (res)
+module function reduce_si2(what, np, op) result (res)
     integer(int16),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -63,7 +36,7 @@ function reduce_si2(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_si4(what, np, op) result (res)
+module function reduce_si4(what, np, op) result (res)
     integer(int32),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -76,7 +49,7 @@ function reduce_si4(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_si8(what, np, op) result (res)
+module function reduce_si8(what, np, op) result (res)
     integer(int64),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -89,7 +62,7 @@ function reduce_si8(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sr4(what, np, op) result (res)
+module function reduce_sr4(what, np, op) result (res)
     real(real32),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -102,7 +75,7 @@ function reduce_sr4(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sr8(what, np, op) result (res)
+module function reduce_sr8(what, np, op) result (res)
     real(real64),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -115,7 +88,7 @@ function reduce_sr8(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sr16(what, np, op) result (res)
+module function reduce_sr16(what, np, op) result (res)
     real(real128),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -128,7 +101,7 @@ function reduce_sr16(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sc4(what, np, op) result (res)
+module function reduce_sc4(what, np, op) result (res)
     complex(real32),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -141,7 +114,7 @@ function reduce_sc4(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sc8(what, np, op) result (res)
+module function reduce_sc8(what, np, op) result (res)
     complex(real64),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -154,7 +127,7 @@ function reduce_sc8(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sc16(what, np, op) result (res)
+module function reduce_sc16(what, np, op) result (res)
     complex(real128),intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -167,7 +140,7 @@ function reduce_sc16(what, np, op) result (res)
     
 end function
 !=======================================================================
-function reduce_sl(what, np, op) result (res)
+module function reduce_sl(what, np, op) result (res)
     logical,intent(in) :: what
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -180,7 +153,7 @@ function reduce_sl(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_i1(what, np, op) result (res)
+module function reduce_d1_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -194,7 +167,7 @@ function reduce_d1_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_i1(what, np, op) result (res)
+module function reduce_d2_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -208,7 +181,7 @@ function reduce_d2_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_i1(what, np, op) result (res)
+module function reduce_d3_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -222,7 +195,7 @@ function reduce_d3_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_i1(what, np, op) result (res)
+module function reduce_d4_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -236,7 +209,7 @@ function reduce_d4_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_i1(what, np, op) result (res)
+module function reduce_d5_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -250,7 +223,7 @@ function reduce_d5_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_i1(what, np, op) result (res)
+module function reduce_d6_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -264,7 +237,7 @@ function reduce_d6_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_i1(what, np, op) result (res)
+module function reduce_d7_i1(what, np, op) result (res)
     integer(int8),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -278,7 +251,7 @@ function reduce_d7_i1(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_i2(what, np, op) result (res)
+module function reduce_d1_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -292,7 +265,7 @@ function reduce_d1_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_i2(what, np, op) result (res)
+module function reduce_d2_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -306,7 +279,7 @@ function reduce_d2_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_i2(what, np, op) result (res)
+module function reduce_d3_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -320,7 +293,7 @@ function reduce_d3_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_i2(what, np, op) result (res)
+module function reduce_d4_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -334,7 +307,7 @@ function reduce_d4_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_i2(what, np, op) result (res)
+module function reduce_d5_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -348,7 +321,7 @@ function reduce_d5_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_i2(what, np, op) result (res)
+module function reduce_d6_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -362,7 +335,7 @@ function reduce_d6_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_i2(what, np, op) result (res)
+module function reduce_d7_i2(what, np, op) result (res)
     integer(int16),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -376,7 +349,7 @@ function reduce_d7_i2(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_i4(what, np, op) result (res)
+module function reduce_d1_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -390,7 +363,7 @@ function reduce_d1_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_i4(what, np, op) result (res)
+module function reduce_d2_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -404,7 +377,7 @@ function reduce_d2_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_i4(what, np, op) result (res)
+module function reduce_d3_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -418,7 +391,7 @@ function reduce_d3_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_i4(what, np, op) result (res)
+module function reduce_d4_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -432,7 +405,7 @@ function reduce_d4_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_i4(what, np, op) result (res)
+module function reduce_d5_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -446,7 +419,7 @@ function reduce_d5_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_i4(what, np, op) result (res)
+module function reduce_d6_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -460,7 +433,7 @@ function reduce_d6_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_i4(what, np, op) result (res)
+module function reduce_d7_i4(what, np, op) result (res)
     integer(int32),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -474,7 +447,7 @@ function reduce_d7_i4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_i8(what, np, op) result (res)
+module function reduce_d1_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -488,7 +461,7 @@ function reduce_d1_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_i8(what, np, op) result (res)
+module function reduce_d2_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -502,7 +475,7 @@ function reduce_d2_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_i8(what, np, op) result (res)
+module function reduce_d3_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -516,7 +489,7 @@ function reduce_d3_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_i8(what, np, op) result (res)
+module function reduce_d4_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -530,7 +503,7 @@ function reduce_d4_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_i8(what, np, op) result (res)
+module function reduce_d5_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -544,7 +517,7 @@ function reduce_d5_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_i8(what, np, op) result (res)
+module function reduce_d6_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -558,7 +531,7 @@ function reduce_d6_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_i8(what, np, op) result (res)
+module function reduce_d7_i8(what, np, op) result (res)
     integer(int64),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -572,7 +545,7 @@ function reduce_d7_i8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_r4(what, np, op) result (res)
+module function reduce_d1_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -586,7 +559,7 @@ function reduce_d1_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_r4(what, np, op) result (res)
+module function reduce_d2_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -600,7 +573,7 @@ function reduce_d2_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_r4(what, np, op) result (res)
+module function reduce_d3_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -614,7 +587,7 @@ function reduce_d3_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_r4(what, np, op) result (res)
+module function reduce_d4_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -628,7 +601,7 @@ function reduce_d4_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_r4(what, np, op) result (res)
+module function reduce_d5_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -642,7 +615,7 @@ function reduce_d5_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_r4(what, np, op) result (res)
+module function reduce_d6_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -656,7 +629,7 @@ function reduce_d6_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_r4(what, np, op) result (res)
+module function reduce_d7_r4(what, np, op) result (res)
     real(real32),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -670,7 +643,7 @@ function reduce_d7_r4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_r8(what, np, op) result (res)
+module function reduce_d1_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -684,7 +657,7 @@ function reduce_d1_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_r8(what, np, op) result (res)
+module function reduce_d2_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -698,7 +671,7 @@ function reduce_d2_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_r8(what, np, op) result (res)
+module function reduce_d3_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -712,7 +685,7 @@ function reduce_d3_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_r8(what, np, op) result (res)
+module function reduce_d4_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -726,7 +699,7 @@ function reduce_d4_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_r8(what, np, op) result (res)
+module function reduce_d5_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -740,7 +713,7 @@ function reduce_d5_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_r8(what, np, op) result (res)
+module function reduce_d6_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -754,7 +727,7 @@ function reduce_d6_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_r8(what, np, op) result (res)
+module function reduce_d7_r8(what, np, op) result (res)
     real(real64),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -768,7 +741,7 @@ function reduce_d7_r8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_r16(what, np, op) result (res)
+module function reduce_d1_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -782,7 +755,7 @@ function reduce_d1_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_r16(what, np, op) result (res)
+module function reduce_d2_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -796,7 +769,7 @@ function reduce_d2_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_r16(what, np, op) result (res)
+module function reduce_d3_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -810,7 +783,7 @@ function reduce_d3_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_r16(what, np, op) result (res)
+module function reduce_d4_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -824,7 +797,7 @@ function reduce_d4_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_r16(what, np, op) result (res)
+module function reduce_d5_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -838,7 +811,7 @@ function reduce_d5_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_r16(what, np, op) result (res)
+module function reduce_d6_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -852,7 +825,7 @@ function reduce_d6_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_r16(what, np, op) result (res)
+module function reduce_d7_r16(what, np, op) result (res)
     real(real128),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -866,7 +839,7 @@ function reduce_d7_r16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_c4(what, np, op) result (res)
+module function reduce_d1_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -880,7 +853,7 @@ function reduce_d1_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_c4(what, np, op) result (res)
+module function reduce_d2_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -894,7 +867,7 @@ function reduce_d2_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_c4(what, np, op) result (res)
+module function reduce_d3_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -908,7 +881,7 @@ function reduce_d3_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_c4(what, np, op) result (res)
+module function reduce_d4_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -922,7 +895,7 @@ function reduce_d4_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_c4(what, np, op) result (res)
+module function reduce_d5_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -936,7 +909,7 @@ function reduce_d5_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_c4(what, np, op) result (res)
+module function reduce_d6_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -950,7 +923,7 @@ function reduce_d6_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_c4(what, np, op) result (res)
+module function reduce_d7_c4(what, np, op) result (res)
     complex(real32),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -964,7 +937,7 @@ function reduce_d7_c4(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_c8(what, np, op) result (res)
+module function reduce_d1_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -978,7 +951,7 @@ function reduce_d1_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_c8(what, np, op) result (res)
+module function reduce_d2_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -992,7 +965,7 @@ function reduce_d2_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_c8(what, np, op) result (res)
+module function reduce_d3_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1006,7 +979,7 @@ function reduce_d3_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_c8(what, np, op) result (res)
+module function reduce_d4_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1020,7 +993,7 @@ function reduce_d4_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_c8(what, np, op) result (res)
+module function reduce_d5_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1034,7 +1007,7 @@ function reduce_d5_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_c8(what, np, op) result (res)
+module function reduce_d6_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1048,7 +1021,7 @@ function reduce_d6_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_c8(what, np, op) result (res)
+module function reduce_d7_c8(what, np, op) result (res)
     complex(real64),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1062,7 +1035,7 @@ function reduce_d7_c8(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_c16(what, np, op) result (res)
+module function reduce_d1_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1076,7 +1049,7 @@ function reduce_d1_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_c16(what, np, op) result (res)
+module function reduce_d2_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1090,7 +1063,7 @@ function reduce_d2_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_c16(what, np, op) result (res)
+module function reduce_d3_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1104,7 +1077,7 @@ function reduce_d3_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_c16(what, np, op) result (res)
+module function reduce_d4_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1118,7 +1091,7 @@ function reduce_d4_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_c16(what, np, op) result (res)
+module function reduce_d5_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1132,7 +1105,7 @@ function reduce_d5_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_c16(what, np, op) result (res)
+module function reduce_d6_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1146,7 +1119,7 @@ function reduce_d6_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_c16(what, np, op) result (res)
+module function reduce_d7_c16(what, np, op) result (res)
     complex(real128),intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1160,7 +1133,7 @@ function reduce_d7_c16(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d1_l(what, np, op) result (res)
+module function reduce_d1_l(what, np, op) result (res)
     logical,intent(in) :: what( : )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1174,7 +1147,7 @@ function reduce_d1_l(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d2_l(what, np, op) result (res)
+module function reduce_d2_l(what, np, op) result (res)
     logical,intent(in) :: what( :,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1188,7 +1161,7 @@ function reduce_d2_l(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d3_l(what, np, op) result (res)
+module function reduce_d3_l(what, np, op) result (res)
     logical,intent(in) :: what( :,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1202,7 +1175,7 @@ function reduce_d3_l(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d4_l(what, np, op) result (res)
+module function reduce_d4_l(what, np, op) result (res)
     logical,intent(in) :: what( :,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1216,7 +1189,7 @@ function reduce_d4_l(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d5_l(what, np, op) result (res)
+module function reduce_d5_l(what, np, op) result (res)
     logical,intent(in) :: what( :,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1230,7 +1203,7 @@ function reduce_d5_l(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d6_l(what, np, op) result (res)
+module function reduce_d6_l(what, np, op) result (res)
     logical,intent(in) :: what( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1244,7 +1217,7 @@ function reduce_d6_l(what, np, op) result (res)
     
 end function
 !======================================================================
-function reduce_d7_l(what, np, op) result (res)
+module function reduce_d7_l(what, np, op) result (res)
     logical,intent(in) :: what( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
     character(len=*),intent(in) :: op
@@ -1257,4 +1230,4 @@ function reduce_d7_l(what, np, op) result (res)
     if(ierr /= 0) call stop_mpi("reduce_d7_l: MPI_REDUCE: ERROR")
     
 end function
-end module
+end submodule

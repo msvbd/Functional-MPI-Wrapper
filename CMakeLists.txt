@@ -12,8 +12,8 @@ include(CheckFortranSourceCompiles)
 
 # set output paths for modules, archives, and executables
 set(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/include)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # if build type not specified, default to release
@@ -39,12 +39,10 @@ if(MPI_Fortran_COMPILER MATCHES mpiifort)
   set(CMAKE_Fortran_FLAGS_RELEASE "-O3")
 endif()
 
-add_library(mpifw src/mod_common.f90
-				  src/mod_reduce.f90
-				  src/mod_send.f90
-				  src/mod_broadcast.f90
-				  src/mod_allreduce.f90)
+add_library(mpifw src/smod_reduce.f90
+				  src/smod_send.f90
+				  src/smod_broadcast.f90
+				  src/smod_allreduce.f90
+				  src/smod_common.f90
+				  src/mod_mpifw.f90)
 target_link_libraries(mpifw  MPI::MPI_Fortran)
-
-#install(DIRECTORY "${CMAKE_Fortran_MODULE_DIRECTORY}" DESTINATION "${CMAKE_INSTALL_PREFIX}")
-#install(DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}" DESTINATION "${CMAKE_INSTALL_PREFIX}")

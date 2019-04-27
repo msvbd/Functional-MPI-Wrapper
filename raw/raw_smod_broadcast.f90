@@ -1,24 +1,32 @@
-zmodule mod_broadcast_mpi
+submodule (mod_mpifw) mod_broadcast_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
 
     implicit none
    
-    private
+    @INTERFACE_START@
+		module function broadcast_@DIM_ID@_@F_KIND_ID@(msg, np) result (res)
+			@F_KIND@,intent(in) :: msg( @RANK@ )
+			@F_KIND@,allocatable :: res( @RANK@ )
+			integer(int32),intent(in) :: np
+		end function
+	@INTERFACE_END@
     
-    interface bcast_mpi
-        procedure :: @LIST@
-    end interface
-
-    public :: bcast_mpi
-              
+    @INTERFACE_START@
+		module function broadcast_s@F_KIND_ID@(msg, np) result (res)
+			@F_KIND@,intent(in) :: msg
+			@F_KIND@ :: res
+			integer(int32),intent(in) :: np
+		end function
+	@INTERFACE_END@
+	
+    @INTERFACE_NAME@ bcast_mpi @
     
 contains
-@ARRAY_START@
+@PROCEDURE_START@
 !=======================================================================
-function broadcast_@DIM_ID@_@F_KIND_ID@(msg, np) result (res)
+module function broadcast_@DIM_ID@_@F_KIND_ID@(msg, np) result (res)
     @F_KIND@,intent(in) :: msg( @RANK@ )
     @F_KIND@,allocatable :: res( @RANK@ )
     integer(int32),intent(in) :: np
@@ -31,10 +39,10 @@ function broadcast_@DIM_ID@_@F_KIND_ID@(msg, np) result (res)
     res = msg
     
 end function
-@ARRAY_END@
-@SCALAR_START@
+@PROCEDURE_END@
+@PROCEDURE_START@
 !=======================================================================
-function broadcast_s@F_KIND_ID@(msg, np) result (res)
+module function broadcast_s@F_KIND_ID@(msg, np) result (res)
     @F_KIND@,intent(in) :: msg
     @F_KIND@ :: res
     integer(int32),intent(in) :: np
@@ -45,5 +53,5 @@ function broadcast_s@F_KIND_ID@(msg, np) result (res)
     res = msg
     
 end function
-@SCALAR_END@
-end module
+@PROCEDURE_END@
+end submodule

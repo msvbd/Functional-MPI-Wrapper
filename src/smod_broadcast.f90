@@ -1,44 +1,16 @@
-module mod_broadcast_mpi
+submodule (mod_mpifw) mod_broadcast_mpi
 
     use mpi_f08
     use iso_fortran_env
-	use mod_common_mpi
 
     implicit none
    
-    private
     
-    interface bcast_mpi
-        procedure :: broadcast_d1_i1, broadcast_d2_i1, broadcast_d3_i1, broadcast_d4_i1, &
-                     broadcast_d5_i1, broadcast_d6_i1, broadcast_d7_i1, broadcast_d1_i2, &
-                     broadcast_d2_i2, broadcast_d3_i2, broadcast_d4_i2, broadcast_d5_i2, &
-                     broadcast_d6_i2, broadcast_d7_i2, broadcast_d1_i4, broadcast_d2_i4, &
-                     broadcast_d3_i4, broadcast_d4_i4, broadcast_d5_i4, broadcast_d6_i4, &
-                     broadcast_d7_i4, broadcast_d1_i8, broadcast_d2_i8, broadcast_d3_i8, &
-                     broadcast_d4_i8, broadcast_d5_i8, broadcast_d6_i8, broadcast_d7_i8, &
-                     broadcast_d1_r4, broadcast_d2_r4, broadcast_d3_r4, broadcast_d4_r4, &
-                     broadcast_d5_r4, broadcast_d6_r4, broadcast_d7_r4, broadcast_d1_r8, &
-                     broadcast_d2_r8, broadcast_d3_r8, broadcast_d4_r8, broadcast_d5_r8, &
-                     broadcast_d6_r8, broadcast_d7_r8, broadcast_d1_r16, broadcast_d2_r16, &
-                     broadcast_d3_r16, broadcast_d4_r16, broadcast_d5_r16, broadcast_d6_r16, &
-                     broadcast_d7_r16, broadcast_d1_c4, broadcast_d2_c4, broadcast_d3_c4, &
-                     broadcast_d4_c4, broadcast_d5_c4, broadcast_d6_c4, broadcast_d7_c4, &
-                     broadcast_d1_c8, broadcast_d2_c8, broadcast_d3_c8, broadcast_d4_c8, &
-                     broadcast_d5_c8, broadcast_d6_c8, broadcast_d7_c8, broadcast_d1_c16, &
-                     broadcast_d2_c16, broadcast_d3_c16, broadcast_d4_c16, broadcast_d5_c16, &
-                     broadcast_d6_c16, broadcast_d7_c16, broadcast_d1_l, broadcast_d2_l, &
-                     broadcast_d3_l, broadcast_d4_l, broadcast_d5_l, broadcast_d6_l, &
-                     broadcast_d7_l, broadcast_si1, broadcast_si2, broadcast_si4, &
-                     broadcast_si8, broadcast_sr4, broadcast_sr8, broadcast_sr16, &
-                     broadcast_sc4, broadcast_sc8, broadcast_sc16, broadcast_sl
-    end interface
-
-    public :: bcast_mpi
-              
+	
     
 contains
 !=======================================================================
-function broadcast_d1_i1(msg, np) result (res)
+module function broadcast_d1_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( : )
     integer(int8),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -52,7 +24,7 @@ function broadcast_d1_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_i1(msg, np) result (res)
+module function broadcast_d2_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( :,: )
     integer(int8),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -66,7 +38,7 @@ function broadcast_d2_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_i1(msg, np) result (res)
+module function broadcast_d3_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( :,:,: )
     integer(int8),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -80,7 +52,7 @@ function broadcast_d3_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_i1(msg, np) result (res)
+module function broadcast_d4_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( :,:,:,: )
     integer(int8),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -94,7 +66,7 @@ function broadcast_d4_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_i1(msg, np) result (res)
+module function broadcast_d5_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( :,:,:,:,: )
     integer(int8),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -108,7 +80,7 @@ function broadcast_d5_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_i1(msg, np) result (res)
+module function broadcast_d6_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( :,:,:,:,:,: )
     integer(int8),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -122,7 +94,7 @@ function broadcast_d6_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_i1(msg, np) result (res)
+module function broadcast_d7_i1(msg, np) result (res)
     integer(int8),intent(in) :: msg( :,:,:,:,:,:,: )
     integer(int8),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -136,7 +108,7 @@ function broadcast_d7_i1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_i2(msg, np) result (res)
+module function broadcast_d1_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( : )
     integer(int16),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -150,7 +122,7 @@ function broadcast_d1_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_i2(msg, np) result (res)
+module function broadcast_d2_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( :,: )
     integer(int16),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -164,7 +136,7 @@ function broadcast_d2_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_i2(msg, np) result (res)
+module function broadcast_d3_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( :,:,: )
     integer(int16),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -178,7 +150,7 @@ function broadcast_d3_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_i2(msg, np) result (res)
+module function broadcast_d4_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( :,:,:,: )
     integer(int16),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -192,7 +164,7 @@ function broadcast_d4_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_i2(msg, np) result (res)
+module function broadcast_d5_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( :,:,:,:,: )
     integer(int16),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -206,7 +178,7 @@ function broadcast_d5_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_i2(msg, np) result (res)
+module function broadcast_d6_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( :,:,:,:,:,: )
     integer(int16),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -220,7 +192,7 @@ function broadcast_d6_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_i2(msg, np) result (res)
+module function broadcast_d7_i2(msg, np) result (res)
     integer(int16),intent(in) :: msg( :,:,:,:,:,:,: )
     integer(int16),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -234,7 +206,7 @@ function broadcast_d7_i2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_i4(msg, np) result (res)
+module function broadcast_d1_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( : )
     integer(int32),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -248,7 +220,7 @@ function broadcast_d1_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_i4(msg, np) result (res)
+module function broadcast_d2_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( :,: )
     integer(int32),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -262,7 +234,7 @@ function broadcast_d2_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_i4(msg, np) result (res)
+module function broadcast_d3_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( :,:,: )
     integer(int32),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -276,7 +248,7 @@ function broadcast_d3_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_i4(msg, np) result (res)
+module function broadcast_d4_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( :,:,:,: )
     integer(int32),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -290,7 +262,7 @@ function broadcast_d4_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_i4(msg, np) result (res)
+module function broadcast_d5_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( :,:,:,:,: )
     integer(int32),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -304,7 +276,7 @@ function broadcast_d5_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_i4(msg, np) result (res)
+module function broadcast_d6_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( :,:,:,:,:,: )
     integer(int32),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -318,7 +290,7 @@ function broadcast_d6_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_i4(msg, np) result (res)
+module function broadcast_d7_i4(msg, np) result (res)
     integer(int32),intent(in) :: msg( :,:,:,:,:,:,: )
     integer(int32),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -332,7 +304,7 @@ function broadcast_d7_i4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_i8(msg, np) result (res)
+module function broadcast_d1_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( : )
     integer(int64),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -346,7 +318,7 @@ function broadcast_d1_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_i8(msg, np) result (res)
+module function broadcast_d2_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( :,: )
     integer(int64),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -360,7 +332,7 @@ function broadcast_d2_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_i8(msg, np) result (res)
+module function broadcast_d3_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( :,:,: )
     integer(int64),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -374,7 +346,7 @@ function broadcast_d3_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_i8(msg, np) result (res)
+module function broadcast_d4_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( :,:,:,: )
     integer(int64),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -388,7 +360,7 @@ function broadcast_d4_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_i8(msg, np) result (res)
+module function broadcast_d5_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( :,:,:,:,: )
     integer(int64),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -402,7 +374,7 @@ function broadcast_d5_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_i8(msg, np) result (res)
+module function broadcast_d6_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( :,:,:,:,:,: )
     integer(int64),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -416,7 +388,7 @@ function broadcast_d6_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_i8(msg, np) result (res)
+module function broadcast_d7_i8(msg, np) result (res)
     integer(int64),intent(in) :: msg( :,:,:,:,:,:,: )
     integer(int64),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -430,7 +402,7 @@ function broadcast_d7_i8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_r4(msg, np) result (res)
+module function broadcast_d1_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( : )
     real(real32),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -444,7 +416,7 @@ function broadcast_d1_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_r4(msg, np) result (res)
+module function broadcast_d2_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( :,: )
     real(real32),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -458,7 +430,7 @@ function broadcast_d2_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_r4(msg, np) result (res)
+module function broadcast_d3_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( :,:,: )
     real(real32),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -472,7 +444,7 @@ function broadcast_d3_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_r4(msg, np) result (res)
+module function broadcast_d4_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( :,:,:,: )
     real(real32),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -486,7 +458,7 @@ function broadcast_d4_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_r4(msg, np) result (res)
+module function broadcast_d5_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( :,:,:,:,: )
     real(real32),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -500,7 +472,7 @@ function broadcast_d5_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_r4(msg, np) result (res)
+module function broadcast_d6_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( :,:,:,:,:,: )
     real(real32),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -514,7 +486,7 @@ function broadcast_d6_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_r4(msg, np) result (res)
+module function broadcast_d7_r4(msg, np) result (res)
     real(real32),intent(in) :: msg( :,:,:,:,:,:,: )
     real(real32),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -528,7 +500,7 @@ function broadcast_d7_r4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_r8(msg, np) result (res)
+module function broadcast_d1_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( : )
     real(real64),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -542,7 +514,7 @@ function broadcast_d1_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_r8(msg, np) result (res)
+module function broadcast_d2_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( :,: )
     real(real64),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -556,7 +528,7 @@ function broadcast_d2_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_r8(msg, np) result (res)
+module function broadcast_d3_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( :,:,: )
     real(real64),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -570,7 +542,7 @@ function broadcast_d3_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_r8(msg, np) result (res)
+module function broadcast_d4_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( :,:,:,: )
     real(real64),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -584,7 +556,7 @@ function broadcast_d4_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_r8(msg, np) result (res)
+module function broadcast_d5_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( :,:,:,:,: )
     real(real64),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -598,7 +570,7 @@ function broadcast_d5_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_r8(msg, np) result (res)
+module function broadcast_d6_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( :,:,:,:,:,: )
     real(real64),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -612,7 +584,7 @@ function broadcast_d6_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_r8(msg, np) result (res)
+module function broadcast_d7_r8(msg, np) result (res)
     real(real64),intent(in) :: msg( :,:,:,:,:,:,: )
     real(real64),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -626,7 +598,7 @@ function broadcast_d7_r8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_r16(msg, np) result (res)
+module function broadcast_d1_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( : )
     real(real128),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -640,7 +612,7 @@ function broadcast_d1_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_r16(msg, np) result (res)
+module function broadcast_d2_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( :,: )
     real(real128),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -654,7 +626,7 @@ function broadcast_d2_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_r16(msg, np) result (res)
+module function broadcast_d3_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( :,:,: )
     real(real128),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -668,7 +640,7 @@ function broadcast_d3_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_r16(msg, np) result (res)
+module function broadcast_d4_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( :,:,:,: )
     real(real128),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -682,7 +654,7 @@ function broadcast_d4_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_r16(msg, np) result (res)
+module function broadcast_d5_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( :,:,:,:,: )
     real(real128),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -696,7 +668,7 @@ function broadcast_d5_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_r16(msg, np) result (res)
+module function broadcast_d6_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( :,:,:,:,:,: )
     real(real128),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -710,7 +682,7 @@ function broadcast_d6_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_r16(msg, np) result (res)
+module function broadcast_d7_r16(msg, np) result (res)
     real(real128),intent(in) :: msg( :,:,:,:,:,:,: )
     real(real128),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -724,7 +696,7 @@ function broadcast_d7_r16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_c4(msg, np) result (res)
+module function broadcast_d1_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( : )
     complex(real32),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -738,7 +710,7 @@ function broadcast_d1_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_c4(msg, np) result (res)
+module function broadcast_d2_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( :,: )
     complex(real32),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -752,7 +724,7 @@ function broadcast_d2_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_c4(msg, np) result (res)
+module function broadcast_d3_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( :,:,: )
     complex(real32),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -766,7 +738,7 @@ function broadcast_d3_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_c4(msg, np) result (res)
+module function broadcast_d4_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( :,:,:,: )
     complex(real32),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -780,7 +752,7 @@ function broadcast_d4_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_c4(msg, np) result (res)
+module function broadcast_d5_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( :,:,:,:,: )
     complex(real32),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -794,7 +766,7 @@ function broadcast_d5_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_c4(msg, np) result (res)
+module function broadcast_d6_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( :,:,:,:,:,: )
     complex(real32),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -808,7 +780,7 @@ function broadcast_d6_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_c4(msg, np) result (res)
+module function broadcast_d7_c4(msg, np) result (res)
     complex(real32),intent(in) :: msg( :,:,:,:,:,:,: )
     complex(real32),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -822,7 +794,7 @@ function broadcast_d7_c4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_c8(msg, np) result (res)
+module function broadcast_d1_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( : )
     complex(real64),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -836,7 +808,7 @@ function broadcast_d1_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_c8(msg, np) result (res)
+module function broadcast_d2_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( :,: )
     complex(real64),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -850,7 +822,7 @@ function broadcast_d2_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_c8(msg, np) result (res)
+module function broadcast_d3_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( :,:,: )
     complex(real64),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -864,7 +836,7 @@ function broadcast_d3_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_c8(msg, np) result (res)
+module function broadcast_d4_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( :,:,:,: )
     complex(real64),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -878,7 +850,7 @@ function broadcast_d4_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_c8(msg, np) result (res)
+module function broadcast_d5_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( :,:,:,:,: )
     complex(real64),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -892,7 +864,7 @@ function broadcast_d5_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_c8(msg, np) result (res)
+module function broadcast_d6_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( :,:,:,:,:,: )
     complex(real64),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -906,7 +878,7 @@ function broadcast_d6_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_c8(msg, np) result (res)
+module function broadcast_d7_c8(msg, np) result (res)
     complex(real64),intent(in) :: msg( :,:,:,:,:,:,: )
     complex(real64),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -920,7 +892,7 @@ function broadcast_d7_c8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_c16(msg, np) result (res)
+module function broadcast_d1_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( : )
     complex(real128),allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -934,7 +906,7 @@ function broadcast_d1_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_c16(msg, np) result (res)
+module function broadcast_d2_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( :,: )
     complex(real128),allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -948,7 +920,7 @@ function broadcast_d2_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_c16(msg, np) result (res)
+module function broadcast_d3_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( :,:,: )
     complex(real128),allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -962,7 +934,7 @@ function broadcast_d3_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_c16(msg, np) result (res)
+module function broadcast_d4_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( :,:,:,: )
     complex(real128),allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -976,7 +948,7 @@ function broadcast_d4_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_c16(msg, np) result (res)
+module function broadcast_d5_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( :,:,:,:,: )
     complex(real128),allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -990,7 +962,7 @@ function broadcast_d5_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_c16(msg, np) result (res)
+module function broadcast_d6_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( :,:,:,:,:,: )
     complex(real128),allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -1004,7 +976,7 @@ function broadcast_d6_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_c16(msg, np) result (res)
+module function broadcast_d7_c16(msg, np) result (res)
     complex(real128),intent(in) :: msg( :,:,:,:,:,:,: )
     complex(real128),allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -1018,7 +990,7 @@ function broadcast_d7_c16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d1_l(msg, np) result (res)
+module function broadcast_d1_l(msg, np) result (res)
     logical,intent(in) :: msg( : )
     logical,allocatable :: res( : )
     integer(int32),intent(in) :: np
@@ -1032,7 +1004,7 @@ function broadcast_d1_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d2_l(msg, np) result (res)
+module function broadcast_d2_l(msg, np) result (res)
     logical,intent(in) :: msg( :,: )
     logical,allocatable :: res( :,: )
     integer(int32),intent(in) :: np
@@ -1046,7 +1018,7 @@ function broadcast_d2_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d3_l(msg, np) result (res)
+module function broadcast_d3_l(msg, np) result (res)
     logical,intent(in) :: msg( :,:,: )
     logical,allocatable :: res( :,:,: )
     integer(int32),intent(in) :: np
@@ -1060,7 +1032,7 @@ function broadcast_d3_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d4_l(msg, np) result (res)
+module function broadcast_d4_l(msg, np) result (res)
     logical,intent(in) :: msg( :,:,:,: )
     logical,allocatable :: res( :,:,:,: )
     integer(int32),intent(in) :: np
@@ -1074,7 +1046,7 @@ function broadcast_d4_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d5_l(msg, np) result (res)
+module function broadcast_d5_l(msg, np) result (res)
     logical,intent(in) :: msg( :,:,:,:,: )
     logical,allocatable :: res( :,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -1088,7 +1060,7 @@ function broadcast_d5_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d6_l(msg, np) result (res)
+module function broadcast_d6_l(msg, np) result (res)
     logical,intent(in) :: msg( :,:,:,:,:,: )
     logical,allocatable :: res( :,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -1102,7 +1074,7 @@ function broadcast_d6_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_d7_l(msg, np) result (res)
+module function broadcast_d7_l(msg, np) result (res)
     logical,intent(in) :: msg( :,:,:,:,:,:,: )
     logical,allocatable :: res( :,:,:,:,:,:,: )
     integer(int32),intent(in) :: np
@@ -1116,7 +1088,7 @@ function broadcast_d7_l(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_si1(msg, np) result (res)
+module function broadcast_si1(msg, np) result (res)
     integer(int8),intent(in) :: msg
     integer(int8) :: res
     integer(int32),intent(in) :: np
@@ -1128,7 +1100,7 @@ function broadcast_si1(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_si2(msg, np) result (res)
+module function broadcast_si2(msg, np) result (res)
     integer(int16),intent(in) :: msg
     integer(int16) :: res
     integer(int32),intent(in) :: np
@@ -1140,7 +1112,7 @@ function broadcast_si2(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_si4(msg, np) result (res)
+module function broadcast_si4(msg, np) result (res)
     integer(int32),intent(in) :: msg
     integer(int32) :: res
     integer(int32),intent(in) :: np
@@ -1152,7 +1124,7 @@ function broadcast_si4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_si8(msg, np) result (res)
+module function broadcast_si8(msg, np) result (res)
     integer(int64),intent(in) :: msg
     integer(int64) :: res
     integer(int32),intent(in) :: np
@@ -1164,7 +1136,7 @@ function broadcast_si8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sr4(msg, np) result (res)
+module function broadcast_sr4(msg, np) result (res)
     real(real32),intent(in) :: msg
     real(real32) :: res
     integer(int32),intent(in) :: np
@@ -1176,7 +1148,7 @@ function broadcast_sr4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sr8(msg, np) result (res)
+module function broadcast_sr8(msg, np) result (res)
     real(real64),intent(in) :: msg
     real(real64) :: res
     integer(int32),intent(in) :: np
@@ -1188,7 +1160,7 @@ function broadcast_sr8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sr16(msg, np) result (res)
+module function broadcast_sr16(msg, np) result (res)
     real(real128),intent(in) :: msg
     real(real128) :: res
     integer(int32),intent(in) :: np
@@ -1200,7 +1172,7 @@ function broadcast_sr16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sc4(msg, np) result (res)
+module function broadcast_sc4(msg, np) result (res)
     complex(real32),intent(in) :: msg
     complex(real32) :: res
     integer(int32),intent(in) :: np
@@ -1212,7 +1184,7 @@ function broadcast_sc4(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sc8(msg, np) result (res)
+module function broadcast_sc8(msg, np) result (res)
     complex(real64),intent(in) :: msg
     complex(real64) :: res
     integer(int32),intent(in) :: np
@@ -1224,7 +1196,7 @@ function broadcast_sc8(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sc16(msg, np) result (res)
+module function broadcast_sc16(msg, np) result (res)
     complex(real128),intent(in) :: msg
     complex(real128) :: res
     integer(int32),intent(in) :: np
@@ -1236,7 +1208,7 @@ function broadcast_sc16(msg, np) result (res)
     
 end function
 !=======================================================================
-function broadcast_sl(msg, np) result (res)
+module function broadcast_sl(msg, np) result (res)
     logical,intent(in) :: msg
     logical :: res
     integer(int32),intent(in) :: np
@@ -1247,4 +1219,4 @@ function broadcast_sl(msg, np) result (res)
     res = msg
     
 end function
-end module
+end submodule

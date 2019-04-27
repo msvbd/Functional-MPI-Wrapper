@@ -1,6 +1,6 @@
 program test
-use mod_mpi_wrapper
 use iso_fortran_env
+use mod_mpifw
 implicit none
 
 integer(4) :: i, a(3) , b(3)    
