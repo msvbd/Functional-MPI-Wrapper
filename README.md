@@ -61,11 +61,13 @@ Functions:
 
 
 All of the above functions are compatible with the standard Fortran 2008 kinds:
-`int32`, `real32`, `real64` and `logical`
+`int8, `int16`, `int32`, `int64` `real32`, `real64`, `real128` 
+`complex(real32)`, `complex(real64)`, `complex(real128)` and `logical`
 
 Argumets:
-* `msg` - can by scalar or array with dimension of range 1 to 3
-		- accepted kinds: `int32`, `real32`, `real64` and `logical`
+* `msg` - can by scalar or array with dimension of range 1 to 7
+		- accepted kinds: `int8, `int16`, `int32`, `int64` `real32`, `real64`, `real128` 
+			`complex(real32)`, `complex(real64)`, `complex(real128)` and `logical`
 * `p_from`, `p_to` - are `int32` variables with range from 0 to `num_procs`-1.
 * `op` - is `character` and can take the vlues:
 	* `"sum"` - sum
@@ -76,6 +78,7 @@ Argumets:
 	* `"or"` - logical or
 
 ## Example usage
+Examples you can found in `/examples`
 ### `send_mpi` example
 ```
 use mod_mpi_wrapper
