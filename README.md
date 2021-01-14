@@ -47,12 +47,12 @@ Subroutines:
 	* Wrapper for [`MPI_INIT`](https://www.open-mpi.org/doc/current/man3/MPI_Init.3.php), 
 			   [`MPI_COMM_SIZE`](https://www.open-mpi.org/doc/current/man3/MPI_Comm_size.3.php)
 			    and [`MPI_COMM_RANK`](https://www.open-mpi.org/doc/current/man3/MPI_Comm_rank.3.php).
-* `finish_mpi()` - Terminates MPI execution environment
+* `finish_mpi()` - The function terminates MPI execution environment
 	* Wrapper for [`MPI_FINALIZE`](https://www.open-mpi.org/doc/current/man3/MPI_Finalize.3.php).
 * `sync_mpi()` - Synchronization of MPI processes
 	* Wrapper for [`MPI_BARRIER`](https://www.open-mpi.org/doc/current/man3/MPI_Barrier.3.php).
-* `stop_mpi([msg])` - Terminates MPI execution environment. Replacement for a `stop` statement.
-	Argument `msg` is an optional character variable which will send to `STDOUT` befor termination.
+* `stop_mpi([msg])` - The function terminates MPI execution environment. Replacement for a `stop` statement.
+	Argument `msg` is an optional character variable which will send to `STDOUT` before termination.
 	* Wrapper for [`MPI_ABORT`](https://www.open-mpi.org/doc/current/man3/MPI_Abort.3.php).
 
 Functions:
@@ -62,9 +62,9 @@ Functions:
 * `bcast_mpi(msg, p_from)` - Send `msg` from `p_from` to all processes.
 	* Wrapper for [`MPI_BCAST`](https://www.open-mpi.org/doc/current/man3/MPI_Bcast.3.php). 
 * `reduce_mpi(msg, n_to, op)` - Reduce `msg` on all process via operation
-	`op` and the result send on process `n_to`.
+	`op`, and the result send on process `n_to`.
 	* Wrapper for [`MPI_REDUCE`](https://www.open-mpi.org/doc/current/man3/MPI_Reduce.3.php). 
-* `allreduce_mpi(msg, op)` - Same as the `reduce_mpi` but the result is send to
+* `allreduce_mpi(msg, op)` - Same as the `reduce_mpi` but the result is sent to
 	all processes.
 	* Wrapper for [`MPI_ALLREDUCE`](https://www.open-mpi.org/doc/current/man3/MPI_Allreduce.3.php). 
 
