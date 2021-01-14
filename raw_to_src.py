@@ -1,7 +1,7 @@
 #
 #
 #
-# This script create compiled f90 files in /src from "raw" f90 files in /raw
+# This script creates compiled f90 files in /src from "raw" f90 files in /raw
 #
 #
 #

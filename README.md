@@ -10,7 +10,7 @@ Functional MPI wrapper for Fortran.
 * [References](#references)
 
 ## Getting started
-You need some MPI Fortran wrapper compiler. For example: `mpifort`, `mpiifort`, etc.
+You should have some MPI Fortran wrapper compiler. For example, `mpifort`, `mpiifort`, etc.
 
 Installation:
 ```
@@ -30,18 +30,17 @@ use mod_mpifw
 
 ## Why MPI wrapper?
 
-MPI wrapper contains overloaded functions for a common functions
+MPI wrapper contains overloaded functions for standard functions
 of [MPI API](https://www.open-mpi.org/doc/current/man3/MPI.3.php).
 The wrapper enables you to write your parallel code more semantic,
- more simple and more functional. Currently it includes just few common functions
- and overloaded functions,
-see [What's included?](#whats-included). 
+more simple and more functional. Currently, it includes just a few standard functions
+and overloaded functions, see [What's included?](#whats-included).
 
 ## What's included?
 
 Variables:
-* `num_procs` - number of MPI processes.
-* `this_proc` - id of calling process. It can range from 0 to `num_procs`-1.
+* `num_procs` - The number of MPI processes.
+* `this_proc` - The id of the calling process. It can range from 0 to `num_procs`-1.
 
 Subroutines:
 * `init_mpi()` - Initializes the MPI execution environment and set _Variables_
@@ -53,30 +52,30 @@ Subroutines:
 * `sync_mpi()` - Synchronization of MPI processes
 	* Wrapper for [`MPI_BARRIER`](https://www.open-mpi.org/doc/current/man3/MPI_Barrier.3.php).
 * `stop_mpi([msg])` - Terminates MPI execution environment. Replacement for a `stop` statement.
-	Argugement `msg` is optional character variable which will send to STDOUT befor tirmination.*
+	Argument `msg` is an optional character variable which will send to `STDOUT` befor termination.
 	* Wrapper for [`MPI_ABORT`](https://www.open-mpi.org/doc/current/man3/MPI_Abort.3.php).
 
 Functions:
-* `send_mpi(msg, p_from, p_to)` - Send `msg` from process `p_from` to process `p_to`
+* `send_mpi(msg, p_from, p_to)` - Send `msg` from process `p_from` to process `p_to`.
 	* Wrapper for [`MPI_SEND`](https://www.open-mpi.org/doc/current/man3/MPI_Send.3.php)
 					 and [`MPI_RECV`](https://www.open-mpi.org/doc/current/man3/MPI_Recv.3.php). 
-* `bcast_mpi(msg, p_from)` - Send `msg` from `p_from` to all processes
+* `bcast_mpi(msg, p_from)` - Send `msg` from `p_from` to all processes.
 	* Wrapper for [`MPI_BCAST`](https://www.open-mpi.org/doc/current/man3/MPI_Bcast.3.php). 
 * `reduce_mpi(msg, n_to, op)` - Reduce `msg` on all process via operation
-	`op` and result send to process `n_to`
+	`op` and the result send on process `n_to`.
 	* Wrapper for [`MPI_REDUCE`](https://www.open-mpi.org/doc/current/man3/MPI_Reduce.3.php). 
 * `allreduce_mpi(msg, op)` - Same as the `reduce_mpi` but the result is send to
-	all processes
+	all processes.
 	* Wrapper for [`MPI_ALLREDUCE`](https://www.open-mpi.org/doc/current/man3/MPI_Allreduce.3.php). 
 
 
 All of the above functions are compatible with the standard Fortran 2008 kinds:
-`int8, `int16`, `int32`, `int64` `real32`, `real64`, `real128` 
+`int8`, `int16`, `int32`, `int64` `real32`, `real64`, `real128` 
 `complex(real32)`, `complex(real64)`, `complex(real128)` and `logical`
 
 Argumets:
 * `msg` - can by scalar or array with dimension of range 1 to 7
-		- accepted kinds: `int8, `int16`, `int32`, `int64` `real32`, `real64`, `real128` 
+		- accepted kinds: `int8`, `int16`, `int32`, `int64` `real32`, `real64`, `real128`, 
 			`complex(real32)`, `complex(real64)`, `complex(real128)` and `logical`
 * `p_from`, `p_to` - are `int32` variables with range from 0 to `num_procs`-1.
 * `op` - is `character` and can take the vlues:
@@ -89,7 +88,7 @@ Argumets:
 
 ## Example usage
 You can found examples in `/examples`.
-All examples in `/example` you can run by python script run_examples_mpifort.py
+All examples in `/example` you can run by python script `run_examples_mpifort.py`
 
 ### `send_mpi` example
 ```
@@ -212,10 +211,10 @@ call finish_mpi()
 ```
 
 ## Contributing
-In /raw folder are "raw" fortran files where are use some tags. Tags are 
-use for automated generationg of src files by raw_to_src.py python script.
+In /raw folder are "raw" Fortran files where are use some tags.
+Tags are used for automated generation of src files by raw_to_src.py python script.
 
-Bug reports and requests please submit [here](https://github.com/msvbd/Functional-MPI-Wrapper/issues/new).
+Bug reports and requests, please submit [here](https://github.com/msvbd/Functional-MPI-Wrapper/issues/new).
 
 ## References
 

@@ -1,7 +1,7 @@
 #
 #
-# This script compile and run all examples in /examples
-# by mpifort and mpirun on 4 processor
+# This script compiles and runs all examples in /examples
+# by mpifort and mpirun on four processors.
 #
 #
 
